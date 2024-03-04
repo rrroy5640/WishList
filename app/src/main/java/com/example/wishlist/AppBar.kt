@@ -20,7 +20,7 @@ fun AppBarView(
     title: String,
     onBackNavClicked: () -> Unit = {}
 ) {
-    val navigationIcon: (@Composable () -> Unit)? = {
+    val navigationIcon: (@Composable () -> Unit) = {
         if (!title.contains("WishList")){
             IconButton(onClick = { onBackNavClicked() }) {
                 Icon(
