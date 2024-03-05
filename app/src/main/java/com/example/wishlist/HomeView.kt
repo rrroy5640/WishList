@@ -22,11 +22,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 
 @Composable
-fun HomeView() {
+fun HomeView(navController:NavController, viewModel: WishViewModel) {
     val context = LocalContext.current
 
     Scaffold(
@@ -37,7 +39,9 @@ fun HomeView() {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { Toast.makeText(context, "add clicked", Toast.LENGTH_LONG).show() },
+                onClick = { Toast.makeText(context, "add clicked", Toast.LENGTH_LONG).show()
+                    navController.navigate(Screen.AddScreen.route)
+                },
                 modifier = Modifier.padding(all = 4.dp),
                 contentColor = Color.White,
                 containerColor = Color.Black

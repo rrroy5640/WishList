@@ -3,7 +3,6 @@ package com.example.wishlist
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,7 +22,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import org.w3c.dom.Text
 
 @Composable
 fun AddEditDetailView(
@@ -35,7 +33,8 @@ fun AddEditDetailView(
         AppBarView(
             title =
             if (id != 0L) stringResource(id = R.string.update_wish)
-            else stringResource(id = R.string.add_wish)
+            else stringResource(id = R.string.add_wish),
+            onBackNavClicked = {navController.navigateUp()}
         )
     })
     {
@@ -58,8 +57,7 @@ fun AddEditDetailView(
                 onValueChanged = { viewModel.onDescriptionChange(it) })
             Button(onClick = {
                 if (viewModel.wishTitleState.isNotEmpty() && viewModel.wishDescriptionState.isNotEmpty()){
-                    //TO DO
-                    //update database
+                    //TODO update wish
                 }
             }) {
                 Text(
