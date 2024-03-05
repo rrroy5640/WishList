@@ -48,7 +48,7 @@ fun HomeView(navController: NavController, viewModel: WishViewModel) {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.navigate(Screen.AddScreen.route + "0L")
+                    navController.navigate(Screen.AddScreen.route + "/0L")
                 },
                 modifier = Modifier.padding(all = 4.dp),
                 contentColor = Color.White,
