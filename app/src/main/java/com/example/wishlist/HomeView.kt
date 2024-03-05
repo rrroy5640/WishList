@@ -17,6 +17,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -28,18 +29,17 @@ import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 
 @Composable
-fun HomeView(navController:NavController, viewModel: WishViewModel) {
-    val context = LocalContext.current
+fun HomeView(navController: NavController, viewModel: WishViewModel) {
 
     Scaffold(
         topBar = {
             AppBarView(title = "WishList", onBackNavClicked = {
-                Toast.makeText(context, "Button clicked", Toast.LENGTH_LONG).show()
+                navController.navigateUp()
             })
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { Toast.makeText(context, "add clicked", Toast.LENGTH_LONG).show()
+                onClick = {
                     navController.navigate(Screen.AddScreen.route)
                 },
                 modifier = Modifier.padding(all = 4.dp),
@@ -53,15 +53,16 @@ fun HomeView(navController:NavController, viewModel: WishViewModel) {
             }
         }
     ) {
+        val wishes = viewModel.wishes.collectAsState(initial = listOf())
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
         ) {
-            items(DummyWish.wishList){
-                item: Wish ->  WishItem(wish = item) {
+            items(wishes.value) { item: Wish ->
+                WishItem(wish = item) {
 
-            }
+                }
             }
         }
     }
@@ -77,7 +78,7 @@ fun WishItem(wish: Wish, onClick: () -> Unit) {
         elevation = 10.dp,
         backgroundColor = Color.White
     ) {
-        Column (modifier = Modifier.padding(16.dp)){
+        Column(modifier = Modifier.padding(16.dp)) {
             Text(text = wish.title, fontWeight = FontWeight.ExtraBold)
             Text(text = wish.description)
         }
