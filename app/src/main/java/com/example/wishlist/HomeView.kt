@@ -1,6 +1,5 @@
 package com.example.wishlist
 
-import android.widget.Toast
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,7 +21,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.rememberDismissState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -32,12 +30,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -92,7 +87,7 @@ fun HomeView(navController: NavController, viewModel: WishViewModel) {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(horizontal = 10.dp)
+                                .padding(top = 8.dp, start = 20.dp)
                                 .background(color), contentAlignment = alignment
                         ) {
                             Icon(imageVector = Icons.Default.Delete, contentDescription = "delete", tint = Color.White, modifier = Modifier.padding(end = 30.dp))
